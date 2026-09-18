@@ -59,5 +59,7 @@ and [Pages workflow documentation](https://docs.github.com/en/pages/getting-star
   Bowden-PII Python engine. The browser does not process user-supplied text.
 - `website/sitemap.xml`, `website/robots.txt`, and page canonical links: domain metadata.
 
-Keep both languages in sync. All fonts, scripts and styles are local; the site
-has no analytics, cookies, backend, or production dependencies.
+Keep both languages in sync. Fonts, styles, and application scripts are local.
+All four pages load the deferred analytics script from `https://wave.21nauts.com/script.js`
+with website ID `644a56e2-530f-4fff-8960-3c9409307aeb`. The site needs no backend
+or build dependencies.
