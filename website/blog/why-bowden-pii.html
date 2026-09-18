@@ -4,18 +4,18 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#193e35" />
-    <title>Keep the context. Keep the identifiers local. — Bowden-PII</title>
+    <title>Why Bowden-PII starts with local redaction</title>
     <meta
       name="description"
-      content="Why Bowden-PII exists, how local redaction works, and what ships in version 0.0.1."
+      content="What the 0.0.1 redactor can do, what we learned from training MiniLM, and what still needs work."
     />
     <meta
       property="og:title"
-      content="Keep the context. Keep the identifiers local. — Bowden-PII"
+      content="Why Bowden-PII starts with local redaction"
     />
     <meta
       property="og:description"
-      content="Why Bowden-PII exists, how local redaction works, and what ships in version 0.0.1."
+      content="What the 0.0.1 redactor can do, what we learned from training MiniLM, and what still needs work."
     />
     <meta property="og:type" content="article" />
     <meta
@@ -78,10 +78,11 @@
     </nav>
     <main id="main" class="journal-wrap">
       <p class="eyebrow">WHY WE ARE BUILDING / 01</p>
-      <h1>Keep the context.<br />Keep the identifiers local.</h1>
+      <h1>Why Bowden-PII starts<br />with local redaction.</h1>
       <p class="journal-intro">
-        Why Bowden-PII exists, how the first runtime works, and what a trained
-        baseline does—and does not—mean.
+        Version 0.0.1 can replace supported personal identifiers before text
+        leaves your computer. Here is how it works and where the model training
+        stands.
       </p>
       <div class="journal-meta">
         <time datetime="2026-09-18">18 September 2026</time
@@ -89,42 +90,42 @@
       </div>
       <div class="article-body">
         <p>
-          An email address is useful when sending a reply. An account number is
-          useful when making a payment. Neither necessarily belongs in the text
-          sent to an AI service to summarise a customer request. Yet useful
-          context and personal identifiers often travel together.
+          A customer asks for a payment update. Their message includes an IBAN
+          and an email address. Bowden-PII lets an application replace those
+          values with <code>[IBAN_1]</code> and <code>[EMAIL_1]</code> before
+          sending the request to an AI service for summarisation.
         </p>
         <p>
-          Bowden-PII starts at that boundary. Its job is to detect supported
-          identifiers locally, replace them with consistent placeholders, and
-          let an application decide what should leave its environment.
+          That is the starting point for this project. Run detection locally,
+          keep the original values there, and send the text with placeholders.
+          The first public release, 0.0.1, gives developers a Python API and a
+          command-line tool to try this with their own text.
         </p>
-        <h2>Why Bowden?</h2>
+        <h2>Why name it after Caspar Bowden?</h2>
         <p>
-          Caspar Bowden argued for privacy with close attention to the technical
-          and legal realities of cloud computing. He co-founded the Foundation
-          for Information Policy Research and served as Microsoft's chief
+          Caspar Bowden studied who could access data held by cloud services,
+          including through government surveillance. He co-founded the
+          Foundation for Information Policy Research and was Microsoft's chief
           privacy adviser for Europe, the Middle East and Africa.
           <a href="https://edri.org/our-work/remembering-caspar-bowden/"
             >EDRi's remembrance</a
           >
-          describes that work and his independence.
+          describes his work and independence.
         </p>
         <p>
-          The project takes inspiration from that insistence on understanding
-          where information goes and who can access it. Redacting supported
-          identifiers before transmission is one practical step towards greater
-          control. It does not solve every privacy problem. This is an
-          independent tribute, without affiliation or endorsement from his
-          estate.
+          His work is a reason to ask what an application should send to a cloud
+          service in the first place. Bowden-PII addresses one part of that
+          question by removing supported identifiers before transmission. The
+          name is an independent tribute, without affiliation or endorsement
+          from his estate.
         </p>
-        <h2>Rules first, where rules are useful</h2>
+        <h2>What happens to the text</h2>
         <p>
-          The 0.0.1 runtime begins with structured identifiers: Swiss AHV/AVS,
-          UID/CHE, VAT suffixes, IBAN and QR-IBAN, payment-card numbers, email
-          addresses, conservative Swiss phone patterns, URLs, IP addresses and
-          MAC addresses. Where a format has a checksum, the engine validates it
-          rather than relying only on the shape of a string.
+          The rules engine checks Swiss AHV/AVS, UID/CHE and VAT identifiers,
+          IBAN and QR-IBAN, and payment-card numbers. It validates checksums
+          where the format provides one. It also detects email addresses,
+          conservative Swiss phone patterns, URLs, IP addresses and MAC
+          addresses.
         </p>
         <pre><code>from bowden_pii import redact
 
@@ -132,78 +133,76 @@ result = redact("Contact <!--email_off-->mia@example.ch<!--/email_off-->", polic
 print(result.redacted)
 # Contact [EMAIL_1]</code></pre>
         <p>
-          Repeated normalized values reuse a placeholder within the same result.
-          A separate local map retains the original values, so an application
-          can manage them inside its own boundary. The audit summary omits raw
-          detected values. The map—and the CLI's full
-          <code>--json</code> output—still contains originals and needs to stay
-          local.
+          If the same normalized value occurs twice, it gets the same
+          placeholder within that result. A separate map holds the originals.
+          Keep that map local. The CLI's full <code>--json</code> output also
+          includes it, so forward <code>result.redacted</code> when you want the
+          masked text. The audit summary omits the original values.
         </p>
         <p>
-          Three policies control the supported scope. Strict includes all
-          deterministic classes. Balanced preserves URLs. Permissive also
-          preserves IP addresses, MAC addresses and standalone UID values. These
-          choices change what is redacted; they are not compliance settings.
+          The policy determines which identifiers the engine replaces.
+          <code>strict</code> includes every supported rule class.
+          <code>balanced</code> leaves URLs unchanged.
+          <code>permissive</code> also leaves IP addresses, MAC addresses and
+          standalone UID values unchanged.
         </p>
-        <h2>What has actually been trained?</h2>
+        <h2>An early model flagged harmless text</h2>
         <p>
-          Names, address components and damaged OCR text are harder to capture
-          with format rules. The research track therefore adds a small MiniLM
-          token classifier and combines its predictions with the deterministic
-          engine. Validated rule detections take priority when spans overlap.
-        </p>
-        <p>
-          Several smoke-training iterations explored negative examples, name
-          boundaries and noisy identifiers. A larger baseline,
-          <code>minilm-large-v1</code>, completed three epochs on 12,000
-          synthetic training rows. The data strategy includes German, French,
-          Italian and English examples, with separate generated evaluation
-          splits and a curated 120-row stress set.
+          Names, addresses and OCR errors need more than format rules. The
+          experimental MiniLM classifier predicts which parts of a text contain
+          identifiers. The hybrid engine combines those predictions with rule
+          detections and gives validated rules priority when they overlap.
         </p>
         <p>
-          The recorded evaluations met the project's internal acceptance gate.
-          That is evidence about these datasets, not proof of general
-          reliability. In particular, the hybrid report compares entity label
-          counts; matching counts does not guarantee that every redaction
-          boundary is correct. Broad, independently labelled real-document
-          evaluation remains work to do.
+          One early model flagged identifiers in 38 of 40 test texts labelled as
+          containing no identifiers. Adding negative examples to training
+          reduced that to zero in the next run on the same held-out set. These
+          were small synthetic sets, but they exposed a problem we needed to fix
+          before training on more data.
+        </p>
+        <p>
+          The larger <code>minilm-large-v1</code> run completed three epochs on
+          12,000 synthetic training rows. The data includes German, French,
+          Italian and English examples. Evaluation used separate generated
+          splits and a curated stress set of 120 rows.
+        </p>
+        <p>
+          The larger run passed the project's recorded acceptance checks. There
+          is still a gap in that evidence. The hybrid report compares counts of
+          identifier labels, so a correct count can hide an incorrect text
+          boundary. We need broader tests on independently labelled real
+          documents before claiming reliable detection across languages and
+          document types.
         </p>
         <div class="journal-note">
-          <strong>Training progress is not a model release.</strong>
+          <strong>What the 0.0.1 download includes</strong>
           <p>
-            Version 0.0.1 includes the rules runtime and experimental hybrid
-            interfaces. It does not ship trained weights or training datasets.
-            The current MiniLM adapter also truncates at 256 tokens by default;
-            it does not yet chunk long documents.
+            The rules runtime, 36 focused tests, a small synthetic benchmark and
+            experimental hybrid interfaces. Trained weights and training
+            datasets are not included. The MiniLM adapter currently stops at 256
+            tokens by default and does not split long inputs into chunks.
           </p>
         </div>
-        <h2>What you can try today</h2>
+        <h2>Try the rules engine today</h2>
         <p>
-          Download the public source or wheel, install it with Python 3.11 or
-          newer, and redact your own text locally through the API or command
-          line. The default rules engine needs no model, runtime dependencies or
-          network connection. The website examples are fixed outputs from that
-          engine; they do not process text entered by visitors.
+          Download the source or wheel and install it with Python 3.11 or newer.
+          The default engine needs no model, runtime dependencies or network
+          connection. You can pass your own text to the API or command line. The
+          website only shows precomputed examples.
         </p>
         <p>
-          The public preview has 36 focused tests covering the shipped runtime
-          and its small synthetic benchmark. Those checks support
-          reproducibility, while broader document coverage and real-world
-          evaluation remain essential next steps.
-        </p>
-        <h2>What comes next</h2>
-        <p>
-          The next priorities are better public-document and OCR evaluation,
-          broader identifier coverage, long-text handling, and a clearer path
-          for distributing an evaluated neural checkpoint. Feedback on concrete
-          misses and false positives will be more useful than treating an early
-          benchmark score as a finish line.
+          The next work is better evaluation on public documents and OCR text,
+          wider identifier coverage, and long-text processing. Distributing
+          trained weights will also need a documented evaluation of the model we
+          ship.
         </p>
         <p>
-          Start with synthetic examples, inspect the output, and use the project
-          in the scope it supports today. If you report an issue, provide a
-          minimal synthetic reproduction instead of personal or confidential
-          data.
+          If an identifier slips through, or harmless text gets masked, open a
+          <a href="https://github.com/48Nauts-Operator/bowden-pii/issues"
+            >GitHub issue</a
+          >
+          with a synthetic example and the output you expected. Keep personal
+          and confidential data out of the report.
         </p>
       </div>
       <div class="journal-actions">

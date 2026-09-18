@@ -4,18 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#193e35" />
-    <title>Kontext bewahren. Kennungen lokal halten. — Bowden-PII</title>
+    <title>Warum Bowden-PII Texte lokal maskiert</title>
     <meta
       name="description"
-      content="Warum Bowden-PII entsteht, wie die lokale Maskierung funktioniert und was in Version 0.0.1 steckt."
+      content="Was die Maskierung in Version 0.0.1 kann, was das MiniLM-Training gezeigt hat und woran wir noch arbeiten."
     />
-    <meta
-      property="og:title"
-      content="Kontext bewahren. Kennungen lokal halten. — Bowden-PII"
-    />
+    <meta property="og:title" content="Warum Bowden-PII Texte lokal maskiert" />
     <meta
       property="og:description"
-      content="Warum Bowden-PII entsteht, wie die lokale Maskierung funktioniert und was in Version 0.0.1 steckt."
+      content="Was die Maskierung in Version 0.0.1 kann, was das MiniLM-Training gezeigt hat und woran wir noch arbeiten."
     />
     <meta property="og:type" content="article" />
     <meta
@@ -82,10 +79,11 @@
     </nav>
     <main id="main" class="journal-wrap">
       <p class="eyebrow">WARUM WIR DARAN ARBEITEN / 01</p>
-      <h1>Kontext bewahren.<br />Kennungen lokal halten.</h1>
+      <h1>Warum Bowden-PII<br />Texte lokal maskiert.</h1>
       <p class="journal-intro">
-        Warum es Bowden-PII gibt, wie die erste Laufzeit funktioniert und was
-        ein trainiertes Basismodell tatsächlich aussagt.
+        Version 0.0.1 ersetzt unterstützte persönliche Kennungen, bevor ein Text
+        Ihren Computer verlässt. So funktioniert die Maskierung, und so weit ist
+        das Modelltraining.
       </p>
       <div class="journal-meta">
         <time datetime="2026-09-18">18. September 2026</time
@@ -93,45 +91,45 @@
       </div>
       <div class="article-body">
         <p>
-          Eine E-Mail-Adresse hilft beim Antworten. Eine Kontonummer hilft beim
-          Bezahlen. Beides muss nicht unbedingt in einem Text stehen, den ein
-          KI-Dienst zur Zusammenfassung einer Kundenanfrage erhält. Trotzdem
-          werden nützlicher Kontext und persönliche Kennungen häufig gemeinsam
-          übertragen.
+          Ein Kunde fragt nach dem Stand einer Zahlung. Seine Nachricht enthält
+          eine IBAN und eine E-Mail-Adresse. Mit Bowden-PII kann eine Anwendung
+          diese Werte durch <code>[IBAN_1]</code> und <code>[EMAIL_1]</code>
+          ersetzen, bevor sie den Text zur Zusammenfassung an einen KI-Dienst
+          sendet.
         </p>
         <p>
-          Bowden-PII setzt an dieser Grenze an. Es erkennt unterstützte
-          Kennungen lokal und ersetzt sie durch konsistente Platzhalter. Die
-          integrierende Anwendung entscheidet, welche Informationen ihre
-          Umgebung verlassen dürfen.
+          Damit beginnt das Projekt. Die Erkennung läuft lokal, die
+          Originalwerte bleiben dort, und der Text enthält anschliessend
+          Platzhalter. Die erste öffentliche Version 0.0.1 bietet eine
+          Python-API und eine Kommandozeile, mit denen Entwickler eigene Texte
+          verarbeiten können.
         </p>
-        <h2>Warum Bowden?</h2>
+        <h2>Warum der Name Caspar Bowden?</h2>
         <p>
-          Caspar Bowden setzte sich für Datenschutz ein und befasste sich dabei
-          genau mit den technischen und rechtlichen Bedingungen des
-          Cloud-Computings. Er war Mitgründer der Foundation for Information
-          Policy Research und leitender Datenschutzberater bei Microsoft für
-          Europa, den Nahen Osten und Afrika.
+          Caspar Bowden untersuchte, wer auf Daten bei Cloud-Diensten zugreifen
+          kann, auch im Rahmen staatlicher Überwachung. Er war Mitgründer der
+          Foundation for Information Policy Research und leitender
+          Datenschutzberater bei Microsoft für Europa, den Nahen Osten und
+          Afrika.
           <a href="https://edri.org/our-work/remembering-caspar-bowden/"
             >EDRis Nachruf</a
           >
-          beschreibt diese Arbeit und seine Unabhängigkeit.
+          beschreibt seine Arbeit und Unabhängigkeit.
         </p>
         <p>
-          Das Projekt orientiert sich an seinem Anspruch, Informationsflüsse und
-          Zugriffsmöglichkeiten zu verstehen. Unterstützte Kennungen vor der
-          Übertragung zu maskieren, ist ein konkreter Schritt zu mehr Kontrolle.
-          Er löst nicht jedes Datenschutzproblem. Das Projekt ist eine
-          unabhängige Würdigung ohne Verbindung zu oder Unterstützung durch
-          seinen Nachlass.
+          Seine Arbeit gibt Anlass zu der Frage, welche Daten eine Anwendung
+          überhaupt an einen Cloud-Dienst senden sollte. Bowden-PII setzt bei
+          den unterstützten Kennungen an und entfernt sie vor der Übertragung.
+          Der Name ist eine unabhängige Würdigung, ohne Verbindung zu oder
+          Unterstützung durch seinen Nachlass.
         </p>
-        <h2>Regeln dort, wo Regeln helfen</h2>
+        <h2>Was mit dem Text passiert</h2>
         <p>
-          Version 0.0.1 beginnt mit strukturierten Kennungen: Schweizer AHV/AVS,
-          UID/CHE, MWST-Suffixen, IBAN und QR-IBAN, Kreditkartennummern,
-          E-Mail-Adressen, konservativen Schweizer Telefonnummernmustern, URLs,
-          IP- und MAC-Adressen. Wo ein Format eine Prüfsumme vorsieht, wird
-          diese überprüft.
+          Die regelbasierte Engine prüft Schweizer AHV/AVS-, UID/CHE- und
+          MWST-Kennungen, IBAN, QR-IBAN und Kreditkartennummern. Wo das Format
+          eine Prüfsumme vorsieht, kontrolliert sie diese. Hinzu kommen
+          E-Mail-Adressen, konservative Schweizer Telefonnummernmuster, URLs,
+          IP- und MAC-Adressen.
         </p>
         <pre><code>from bowden_pii import redact
 
@@ -139,87 +137,85 @@ result = redact("Kontakt: <!--email_off-->mia@example.ch<!--/email_off-->", poli
 print(result.redacted)
 # Kontakt: [EMAIL_1]</code></pre>
         <p>
-          Wiederholte normalisierte Werte erhalten innerhalb eines Ergebnisses
-          denselben Platzhalter. Eine separate lokale Zuordnung enthält die
-          Originalwerte. Anwendungen verwalten diese innerhalb ihrer eigenen
-          Umgebung. Die Audit-Zusammenfassung lässt Originalwerte weg. Die
-          Zuordnung und die vollständige CLI-Ausgabe mit
-          <code>--json</code> enthalten sie weiterhin und sollten lokal bleiben.
+          Kommt derselbe normalisierte Wert zweimal vor, erhält er innerhalb
+          dieses Ergebnisses denselben Platzhalter. Eine separate Zuordnung
+          enthält die Originalwerte. Bewahren Sie diese lokal auf. Auch die
+          vollständige CLI-Ausgabe mit <code>--json</code> enthält die
+          Zuordnung. Verwenden Sie <code>result.redacted</code>, wenn Sie den
+          maskierten Text weitergeben wollen. Die Audit-Zusammenfassung lässt
+          die Originalwerte weg.
         </p>
         <p>
-          Drei Richtlinien bestimmen den Umfang. Strikt umfasst alle
-          deterministischen Kennungsklassen. Ausgewogen lässt URLs unverändert.
-          Zurückhaltend erhält zusätzlich IP-Adressen, MAC-Adressen und
-          eigenständige UID-Werte. Diese Einstellungen verändern die Maskierung;
-          sie sind keine Compliance-Einstellungen.
+          Die Richtlinie bestimmt, welche Kennungen die Engine ersetzt.
+          <code>strict</code> umfasst alle unterstützten regelbasierten Klassen.
+          <code>balanced</code> lässt URLs unverändert.
+          <code>permissive</code> erhält zusätzlich IP-Adressen, MAC-Adressen
+          und eigenständige UID-Werte.
         </p>
-        <h2>Was wurde tatsächlich trainiert?</h2>
+        <h2>Ein frühes Modell meldete falsche Treffer</h2>
         <p>
-          Namen, Adressbestandteile und fehlerhafte OCR-Texte lassen sich
-          schwerer über Formatregeln erkennen. Deshalb untersucht der
-          Forschungszweig einen kleinen MiniLM-Token-Klassifikator und
-          kombiniert seine Vorhersagen mit der deterministischen Engine. Bei
-          Überschneidungen haben validierte Regeltreffer Vorrang.
-        </p>
-        <p>
-          Mehrere erste Trainingsläufe untersuchten Negativbeispiele,
-          Namensgrenzen und beschädigte Kennungen. Ein grösseres Basismodell,
-          <code>minilm-large-v1</code>, absolvierte drei Epochen mit 12’000
-          synthetischen Trainingszeilen. Die Datenstrategie umfasst deutsche,
-          französische, italienische und englische Beispiele, separate
-          generierte Evaluationsdaten und einen kuratierten Stresstest mit 120
-          Zeilen.
+          Namen, Adressen und OCR-Fehler brauchen mehr als Formatregeln. Der
+          experimentelle MiniLM-Klassifikator sagt voraus, welche Textstellen
+          Kennungen enthalten. Die hybride Engine kombiniert diese Vorhersagen
+          mit Regeltreffern. Bei Überschneidungen haben validierte Regeln
+          Vorrang.
         </p>
         <p>
-          Die dokumentierten Evaluationen erfüllten die internen
-          Annahmekriterien. Das beschreibt Ergebnisse auf diesen Datensätzen,
-          keine allgemeine Zuverlässigkeit. Insbesondere vergleicht der
-          Hybridbericht die Anzahl der erkannten Kennungsklassen. Gleiche
-          Anzahlen belegen noch keine korrekten Maskierungsgrenzen. Eine breite
-          Evaluation mit unabhängig annotierten echten Dokumenten steht
-          weiterhin aus.
+          Ein frühes Modell meldete Kennungen in 38 von 40 Testtexten, die laut
+          Annotation keine Kennungen enthielten. Nach der Aufnahme von
+          Negativbeispielen ins Training sank diese Zahl im nächsten Lauf auf
+          null, gemessen am selben zurückgehaltenen Testdatensatz. Die
+          Datensätze waren klein und synthetisch. Trotzdem zeigten sie einen
+          Fehler, den wir vor dem grösseren Training beheben mussten.
+        </p>
+        <p>
+          Der grössere Lauf <code>minilm-large-v1</code> absolvierte drei
+          Epochen mit 12 000 synthetischen Trainingszeilen. Die Daten enthalten
+          deutsche, französische, italienische und englische Beispiele. Für die
+          Evaluation kamen separate generierte Datensätze und ein kuratierter
+          Stresstest mit 120 Zeilen zum Einsatz.
+        </p>
+        <p>
+          Der grössere Lauf bestand die dokumentierten Prüfungen des Projekts.
+          Die Aussagekraft bleibt begrenzt. Der Hybridbericht vergleicht die
+          Anzahl der erkannten Kennungsklassen. Eine richtige Anzahl kann also
+          eine falsche Textgrenze verdecken. Bevor wir zuverlässige Erkennung
+          über Sprachen und Dokumenttypen hinweg behaupten, brauchen wir
+          breitere Tests mit unabhängig annotierten echten Dokumenten.
         </p>
         <div class="journal-note">
-          <strong
-            >Trainingsfortschritt ist noch keine Modellveröffentlichung.</strong
-          >
+          <strong>Was im Download von Version 0.0.1 steckt</strong>
           <p>
-            Version 0.0.1 enthält die regelbasierte Laufzeit und experimentelle
-            hybride Schnittstellen. Trainierte Gewichte und Trainingsdatensätze
-            werden nicht mitgeliefert. Der MiniLM-Adapter begrenzt Eingaben
-            standardmässig auf 256 Tokens und teilt lange Dokumente noch nicht
-            in Abschnitte auf.
+            Die regelbasierte Laufzeit, 36 gezielte Tests, ein kleiner
+            synthetischer Benchmark und experimentelle hybride Schnittstellen.
+            Trainierte Gewichte und Trainingsdatensätze sind nicht enthalten.
+            Der MiniLM-Adapter endet standardmässig nach 256 Tokens und teilt
+            lange Eingaben noch nicht in Abschnitte auf.
           </p>
         </div>
-        <h2>Was Sie heute ausprobieren können</h2>
+        <h2>Die regelbasierte Engine ausprobieren</h2>
         <p>
-          Laden Sie den öffentlichen Quellcode oder das Wheel herunter,
-          installieren Sie es mit Python 3.11 oder neuer und maskieren Sie
-          eigene Texte lokal über die API oder Kommandozeile. Die
-          Standard-Engine benötigt weder ein Modell noch Laufzeitabhängigkeiten
-          oder eine Netzwerkverbindung. Die Website zeigt feste Ergebnisse
-          dieser Engine und verarbeitet keine von Besuchern eingegebenen Texte.
+          Laden Sie den Quellcode oder das Wheel herunter und installieren Sie
+          es mit Python 3.11 oder neuer. Die Standard-Engine benötigt kein
+          Modell, keine Laufzeitabhängigkeiten und keine Netzwerkverbindung.
+          Eigene Texte verarbeiten Sie über die API oder Kommandozeile. Die
+          Website zeigt ausschliesslich vorberechnete Beispiele.
         </p>
         <p>
-          Die öffentliche Vorschau enthält 36 gezielte Tests für die
-          ausgelieferte Laufzeit und ihren kleinen synthetischen Benchmark.
-          Diese Prüfungen unterstützen die Reproduzierbarkeit. Eine breitere
-          Dokumentabdeckung und Evaluation unter realen Bedingungen bleiben
-          notwendig.
-        </p>
-        <h2>Wie es weitergeht</h2>
-        <p>
-          Als Nächstes stehen bessere Evaluationen mit öffentlichen Dokumenten
-          und OCR-Texten, zusätzliche Kennungen, die Verarbeitung langer Texte
-          und ein nachvollziehbarer Weg zur Veröffentlichung eines geprüften
-          neuronalen Modells an. Konkrete Hinweise auf übersehene Kennungen und
-          Fehlalarme helfen dabei besonders.
+          Als Nächstes arbeiten wir an besseren Evaluationen mit öffentlichen
+          Dokumenten und OCR-Texten, zusätzlichen Kennungen und der Verarbeitung
+          langer Texte. Für eine Veröffentlichung der Modellgewichte brauchen
+          wir ausserdem eine dokumentierte Evaluation des ausgelieferten
+          Modells.
         </p>
         <p>
-          Beginnen Sie mit synthetischen Beispielen und prüfen Sie die
-          Ergebnisse im aktuell unterstützten Umfang. Verwenden Sie für
-          Fehlermeldungen ein kleines synthetisches Beispiel statt persönlicher
-          oder vertraulicher Daten.
+          Wird eine Kennung übersehen oder harmloser Text maskiert, erstellen
+          Sie ein
+          <a href="https://github.com/48Nauts-Operator/bowden-pii/issues"
+            >GitHub-Issue</a
+          >
+          mit einem synthetischen Beispiel und dem erwarteten Ergebnis.
+          Persönliche und vertrauliche Daten gehören nicht in die Fehlermeldung.
         </p>
       </div>
       <div class="journal-actions">
