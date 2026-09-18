@@ -3,9 +3,6 @@ name: Publish Bowden-PII website
 on:
   push:
     branches: [main]
-    paths:
-      - "website/**"
-      - ".github/workflows/pages.yml"
   workflow_dispatch:
 
 permissions:

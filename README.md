@@ -16,12 +16,29 @@ Open http://127.0.0.1:4188/ or http://127.0.0.1:4188/de/.
 ## Publish
 
 The workflow in `.github/workflows/pages.yml` publishes `website/` to GitHub Pages
-on changes pushed to `main`. Enable **GitHub Actions** in the repository's
+on every push to `main`. Enable **GitHub Actions** in the repository's
 **Settings → Pages → Build and deployment** before running the workflow.
 
-The source repository is hosted on Forgejo. To use GitHub Pages, mirror this
-repository to GitHub and enable Pages there. Forgejo does not run the GitHub
-Pages workflow. GitHub hosting and the custom domain are not yet configured.
+The source repository is hosted on Forgejo (`origin`). The publishing repository
+is [48Nauts-Operator/bowden-pii-website](https://github.com/48Nauts-Operator/bowden-pii-website)
+(`github`). Both contain the same `main` branch. Forgejo does not run the GitHub
+Pages workflow. GitHub Pages enablement and custom-domain setup are still pending.
+
+After committing changes to `main`, publish them to both repositories:
+
+```sh
+./scripts/publish.sh
+```
+
+The script pushes Forgejo first, then GitHub, where the Pages workflow runs.
+It never force-pushes. This is a local publishing command; changes made directly
+on Forgejo are not automatically mirrored. Pull those changes before publishing.
+
+In a fresh Forgejo clone, configure the GitHub remote once:
+
+```sh
+git remote add github git@github.com:48Nauts-Operator/bowden-pii-website.git
+```
 
 After registering the domain, set **Settings → Pages → Custom domain** to
 `bowden-pii.com`, then configure DNS and enable HTTPS after certificate issuance.
