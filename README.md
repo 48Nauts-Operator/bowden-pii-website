@@ -60,6 +60,18 @@ and [Pages workflow documentation](https://docs.github.com/en/pages/getting-star
 - `website/sitemap.xml`, `website/robots.txt`, and page canonical links: domain metadata.
 
 Keep both languages in sync. Fonts, styles, and application scripts are local.
-All four pages load the deferred analytics script from `https://wave.21nauts.com/script.js`
+All pages load the deferred analytics script from `https://wave.21nauts.com/script.js`
 with website ID `644a56e2-530f-4fff-8960-3c9409307aeb`. The site needs no backend
 or build dependencies.
+
+## Blog and releases
+
+- `/blog/` and `/de/blog/`: development posts, dated cards and narrow reading layout.
+- `/blog/why-bowden-pii.html` and its German counterpart: project motivation,
+  runtime, training progress and the scope of the 0.0.1 public preview.
+- `/releases/` and `/de/releases/`: release notes, installation and GitHub downloads.
+- Public runtime source: https://github.com/48Nauts-Operator/bowden-pii
+
+When publishing a post or release, update both languages and `website/sitemap.xml`.
+The editorial layout follows the structure of https://xnaut.dev/blog/ using the
+Bowden-PII palette and shared typography.

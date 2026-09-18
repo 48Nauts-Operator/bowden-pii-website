@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#193e35" />
+    <title>Kontext bewahren. Kennungen lokal halten. — Bowden-PII</title>
+    <meta
+      name="description"
+      content="Warum Bowden-PII entsteht, wie die lokale Maskierung funktioniert und was in Version 0.0.1 steckt."
+    />
+    <meta
+      property="og:title"
+      content="Kontext bewahren. Kennungen lokal halten. — Bowden-PII"
+    />
+    <meta
+      property="og:description"
+      content="Warum Bowden-PII entsteht, wie die lokale Maskierung funktioniert und was in Version 0.0.1 steckt."
+    />
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:url"
+      content="https://bowden-pii.com/de/blog/why-bowden-pii.html"
+    />
+    <link
+      rel="canonical"
+      href="https://bowden-pii.com/de/blog/why-bowden-pii.html"
+    />
+    <link rel="alternate" hreflang="en" href="../../blog/why-bowden-pii.html" />
+    <link rel="alternate" hreflang="de" href="why-bowden-pii.html" />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href="../../blog/why-bowden-pii.html"
+    />
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../../styles.css" />
+    <script
+      defer
+      src="https://wave.21nauts.com/script.js"
+      data-website-id="644a56e2-530f-4fff-8960-3c9409307aeb"
+    ></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Zum Inhalt springen</a>
+    <header class="site-header">
+      <a class="brand" href="../index.html" aria-label="Bowden-PII Home"
+        ><span class="brand-mark" aria-hidden="true">b<span></span></span
+        >bowden<span class="brand-suffix">/ pii</span></a
+      >
+      <nav aria-label="Hauptnavigation">
+        <a href="../project.html">Projekt</a><a href="index.html">Blog</a
+        ><a href="../releases/index.html">Releases</a
+        ><a href="../index.html#about">Über Bowden</a>
+      </nav>
+      <a
+        class="header-cta"
+        href="https://github.com/48Nauts-Operator/bowden-pii"
+        >GitHub <span aria-hidden="true">↗</span></a
+      >
+      <div class="language-switch" role="group" aria-label="Sprache">
+        <a
+          href="../../blog/why-bowden-pii.html"
+          lang="en"
+          hreflang="en"
+          aria-label="English"
+          >EN</a
+        ><a
+          href="why-bowden-pii.html"
+          lang="de"
+          hreflang="de"
+          aria-label="Deutsch"
+          aria-current="page"
+          >DE</a
+        >
+      </div>
+    </header>
+    <nav class="mobile-site-nav" aria-label="Weitere Navigation">
+      <a href="../project.html">Projekt</a><a href="index.html">Blog</a
+      ><a href="../releases/index.html">Releases</a
+      ><a href="https://github.com/48Nauts-Operator/bowden-pii">GitHub ↗</a>
+    </nav>
+    <main id="main" class="journal-wrap">
+      <p class="eyebrow">WARUM WIR DARAN ARBEITEN / 01</p>
+      <h1>Kontext bewahren.<br />Kennungen lokal halten.</h1>
+      <p class="journal-intro">
+        Warum es Bowden-PII gibt, wie die erste Laufzeit funktioniert und was
+        ein trainiertes Basismodell tatsächlich aussagt.
+      </p>
+      <div class="journal-meta">
+        <time datetime="2026-09-18">18. September 2026</time
+        ><span>Bowden-PII</span><span>Entwicklervorschau 0.0.1</span>
+      </div>
+      <div class="article-body">
+        <p>
+          Eine E-Mail-Adresse hilft beim Antworten. Eine Kontonummer hilft beim
+          Bezahlen. Beides muss nicht unbedingt in einem Text stehen, den ein
+          KI-Dienst zur Zusammenfassung einer Kundenanfrage erhält. Trotzdem
+          werden nützlicher Kontext und persönliche Kennungen häufig gemeinsam
+          übertragen.
+        </p>
+        <p>
+          Bowden-PII setzt an dieser Grenze an. Es erkennt unterstützte
+          Kennungen lokal und ersetzt sie durch konsistente Platzhalter. Die
+          integrierende Anwendung entscheidet, welche Informationen ihre
+          Umgebung verlassen dürfen.
+        </p>
+        <h2>Warum Bowden?</h2>
+        <p>
+          Caspar Bowden setzte sich für Datenschutz ein und befasste sich dabei
+          genau mit den technischen und rechtlichen Bedingungen des
+          Cloud-Computings. Er war Mitgründer der Foundation for Information
+          Policy Research und leitender Datenschutzberater bei Microsoft für
+          Europa, den Nahen Osten und Afrika.
+          <a href="https://edri.org/our-work/remembering-caspar-bowden/"
+            >EDRis Nachruf</a
+          >
+          beschreibt diese Arbeit und seine Unabhängigkeit.
+        </p>
+        <p>
+          Das Projekt orientiert sich an seinem Anspruch, Informationsflüsse und
+          Zugriffsmöglichkeiten zu verstehen. Unterstützte Kennungen vor der
+          Übertragung zu maskieren, ist ein konkreter Schritt zu mehr Kontrolle.
+          Er löst nicht jedes Datenschutzproblem. Das Projekt ist eine
+          unabhängige Würdigung ohne Verbindung zu oder Unterstützung durch
+          seinen Nachlass.
+        </p>
+        <h2>Regeln dort, wo Regeln helfen</h2>
+        <p>
+          Version 0.0.1 beginnt mit strukturierten Kennungen: Schweizer AHV/AVS,
+          UID/CHE, MWST-Suffixen, IBAN und QR-IBAN, Kreditkartennummern,
+          E-Mail-Adressen, konservativen Schweizer Telefonnummernmustern, URLs,
+          IP- und MAC-Adressen. Wo ein Format eine Prüfsumme vorsieht, wird
+          diese überprüft.
+        </p>
+        <pre><code>from bowden_pii import redact
+
+result = redact("Kontakt: mia@example.ch", policy="strict")
+print(result.redacted)
+# Kontakt: [EMAIL_1]</code></pre>
+        <p>
+          Wiederholte normalisierte Werte erhalten innerhalb eines Ergebnisses
+          denselben Platzhalter. Eine separate lokale Zuordnung enthält die
+          Originalwerte. Anwendungen verwalten diese innerhalb ihrer eigenen
+          Umgebung. Die Audit-Zusammenfassung lässt Originalwerte weg. Die
+          Zuordnung und die vollständige CLI-Ausgabe mit
+          <code>--json</code> enthalten sie weiterhin und sollten lokal bleiben.
+        </p>
+        <p>
+          Drei Richtlinien bestimmen den Umfang. Strikt umfasst alle
+          deterministischen Kennungsklassen. Ausgewogen lässt URLs unverändert.
+          Zurückhaltend erhält zusätzlich IP-Adressen, MAC-Adressen und
+          eigenständige UID-Werte. Diese Einstellungen verändern die Maskierung;
+          sie sind keine Compliance-Einstellungen.
+        </p>
+        <h2>Was wurde tatsächlich trainiert?</h2>
+        <p>
+          Namen, Adressbestandteile und fehlerhafte OCR-Texte lassen sich
+          schwerer über Formatregeln erkennen. Deshalb untersucht der
+          Forschungszweig einen kleinen MiniLM-Token-Klassifikator und
+          kombiniert seine Vorhersagen mit der deterministischen Engine. Bei
+          Überschneidungen haben validierte Regeltreffer Vorrang.
+        </p>
+        <p>
+          Mehrere erste Trainingsläufe untersuchten Negativbeispiele,
+          Namensgrenzen und beschädigte Kennungen. Ein grösseres Basismodell,
+          <code>minilm-large-v1</code>, absolvierte drei Epochen mit 12’000
+          synthetischen Trainingszeilen. Die Datenstrategie umfasst deutsche,
+          französische, italienische und englische Beispiele, separate
+          generierte Evaluationsdaten und einen kuratierten Stresstest mit 120
+          Zeilen.
+        </p>
+        <p>
+          Die dokumentierten Evaluationen erfüllten die internen
+          Annahmekriterien. Das beschreibt Ergebnisse auf diesen Datensätzen,
+          keine allgemeine Zuverlässigkeit. Insbesondere vergleicht der
+          Hybridbericht die Anzahl der erkannten Kennungsklassen. Gleiche
+          Anzahlen belegen noch keine korrekten Maskierungsgrenzen. Eine breite
+          Evaluation mit unabhängig annotierten echten Dokumenten steht
+          weiterhin aus.
+        </p>
+        <div class="journal-note">
+          <strong
+            >Trainingsfortschritt ist noch keine Modellveröffentlichung.</strong
+          >
+          <p>
+            Version 0.0.1 enthält die regelbasierte Laufzeit und experimentelle
+            hybride Schnittstellen. Trainierte Gewichte und Trainingsdatensätze
+            werden nicht mitgeliefert. Der MiniLM-Adapter begrenzt Eingaben
+            standardmässig auf 256 Tokens und teilt lange Dokumente noch nicht
+            in Abschnitte auf.
+          </p>
+        </div>
+        <h2>Was Sie heute ausprobieren können</h2>
+        <p>
+          Laden Sie den öffentlichen Quellcode oder das Wheel herunter,
+          installieren Sie es mit Python 3.11 oder neuer und maskieren Sie
+          eigene Texte lokal über die API oder Kommandozeile. Die
+          Standard-Engine benötigt weder ein Modell noch Laufzeitabhängigkeiten
+          oder eine Netzwerkverbindung. Die Website zeigt feste Ergebnisse
+          dieser Engine und verarbeitet keine von Besuchern eingegebenen Texte.
+        </p>
+        <p>
+          Die öffentliche Vorschau enthält 36 gezielte Tests für die
+          ausgelieferte Laufzeit und ihren kleinen synthetischen Benchmark.
+          Diese Prüfungen unterstützen die Reproduzierbarkeit. Eine breitere
+          Dokumentabdeckung und Evaluation unter realen Bedingungen bleiben
+          notwendig.
+        </p>
+        <h2>Wie es weitergeht</h2>
+        <p>
+          Als Nächstes stehen bessere Evaluationen mit öffentlichen Dokumenten
+          und OCR-Texten, zusätzliche Kennungen, die Verarbeitung langer Texte
+          und ein nachvollziehbarer Weg zur Veröffentlichung eines geprüften
+          neuronalen Modells an. Konkrete Hinweise auf übersehene Kennungen und
+          Fehlalarme helfen dabei besonders.
+        </p>
+        <p>
+          Beginnen Sie mit synthetischen Beispielen und prüfen Sie die
+          Ergebnisse im aktuell unterstützten Umfang. Verwenden Sie für
+          Fehlermeldungen ein kleines synthetisches Beispiel statt persönlicher
+          oder vertraulicher Daten.
+        </p>
+      </div>
+      <div class="journal-actions">
+        <a
+          class="button button-primary"
+          href="https://github.com/48Nauts-Operator/bowden-pii/releases/tag/v0.0.1"
+          >Version 0.0.1 herunterladen ↗</a
+        ><a class="text-link" href="./">Alle Beiträge →</a>
+      </div>
+    </main>
+    <footer class="site-footer section-wrap">
+      <div>
+        <a class="brand" href="../index.html"
+          >bowden<span class="brand-suffix">/ pii</span></a
+        >
+        <p>Datenschutz gehört an den Anfang.</p>
+      </div>
+      <div class="footer-links">
+        <a href="../project.html">Projekt</a><a href="index.html">Blog</a
+        ><a href="../releases/index.html">Releases</a
+        ><a href="https://github.com/48Nauts-Operator/bowden-pii">GitHub ↗</a
+        ><a href="../project.html#privacy">Datenschutz</a>
+      </div>
+    </footer>
+  </body>
+</html>

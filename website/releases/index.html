@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#193e35" />
+    <title>Releases — Bowden-PII</title>
+    <meta
+      name="description"
+      content="Version 0.0.1: developer preview downloads and release scope."
+    />
+    <meta property="og:title" content="Releases — Bowden-PII" />
+    <meta
+      property="og:description"
+      content="Version 0.0.1: developer preview downloads and release scope."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://bowden-pii.com/releases/" />
+    <link rel="canonical" href="https://bowden-pii.com/releases/" />
+    <link rel="alternate" hreflang="en" href="index.html" />
+    <link rel="alternate" hreflang="de" href="../de/releases/index.html" />
+    <link rel="alternate" hreflang="x-default" href="index.html" />
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../styles.css" />
+    <script
+      defer
+      src="https://wave.21nauts.com/script.js"
+      data-website-id="644a56e2-530f-4fff-8960-3c9409307aeb"
+    ></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="../index.html" aria-label="Bowden-PII Home"
+        ><span class="brand-mark" aria-hidden="true">b<span></span></span
+        >bowden<span class="brand-suffix">/ pii</span></a
+      >
+      <nav aria-label="Main navigation">
+        <a href="../project.html">Project</a
+        ><a href="../blog/index.html">Blog</a
+        ><a href="index.html" aria-current="page">Releases</a
+        ><a href="../index.html#about">About</a>
+      </nav>
+      <a
+        class="header-cta"
+        href="https://github.com/48Nauts-Operator/bowden-pii"
+        >GitHub <span aria-hidden="true">↗</span></a
+      >
+      <div class="language-switch" role="group" aria-label="Language">
+        <a
+          href="index.html"
+          lang="en"
+          hreflang="en"
+          aria-label="English"
+          aria-current="page"
+          >EN</a
+        ><a
+          href="../de/releases/index.html"
+          lang="de"
+          hreflang="de"
+          aria-label="Deutsch"
+          >DE</a
+        >
+      </div>
+    </header>
+    <nav class="mobile-site-nav" aria-label="More navigation">
+      <a href="../project.html">Project</a><a href="../blog/index.html">Blog</a
+      ><a href="index.html" aria-current="page">Releases</a
+      ><a href="https://github.com/48Nauts-Operator/bowden-pii">GitHub ↗</a>
+    </nav>
+    <main id="main" class="journal-wrap">
+      <p class="eyebrow">RELEASES / BOWDEN-PII</p>
+      <h1>What you can run today.</h1>
+      <p class="journal-intro">
+        Versions, downloads and their actual scope. Start with the local runtime
+        and evaluate the results for your use case.
+      </p>
+      <section class="release-card" aria-labelledby="release-title">
+        <div class="release-meta">
+          <span class="release-badge">DEVELOPER PREVIEW</span
+          ><time datetime="2026-09-18">18 September 2026</time>
+        </div>
+        <h2 id="release-title">0.0.1 <span>The local foundation.</span></h2>
+        <p>
+          The first public Python API and command-line release for rules-based
+          redaction. Python 3.11+, with no model or runtime dependencies
+          required.
+        </p>
+        <div class="journal-actions">
+          <a
+            class="button button-primary"
+            href="https://github.com/48Nauts-Operator/bowden-pii/releases/tag/v0.0.1"
+            >Downloads on GitHub ↗</a
+          ><a
+            class="text-link"
+            href="https://github.com/48Nauts-Operator/bowden-pii/tree/v0.0.1"
+            >View source ↗</a
+          >
+        </div>
+        <div class="release-details">
+          <h3>Included</h3>
+          <ul>
+            <li>
+              AHV/AVS, UID/CHE, VAT, IBAN, QR-IBAN and card identifiers with
+              applicable format and checksum checks.
+            </li>
+            <li>Email, Swiss phone patterns, URLs, IP and MAC addresses.</li>
+            <li>
+              Three policies, consistent placeholders, a local replacement map
+              and audit metadata.
+            </li>
+            <li>
+              36 focused tests, a small synthetic benchmark and experimental
+              hybrid interfaces.
+            </li>
+          </ul>
+          <h3>Not included yet</h3>
+          <p>
+            Trained model weights, training datasets, research tools, or
+            validated general detection of names and addresses. The neural
+            adapter currently defaults to 256 tokens without long-text chunking.
+          </p>
+        </div>
+      </section>
+      <section class="article-body">
+        <h2>Install version 0.0.1</h2>
+        <p>
+          Use Python 3.11 or newer. The activation commands below are for macOS
+          and Linux.
+        </p>
+        <pre><code>git clone --branch v0.0.1 --depth 1 https://github.com/48Nauts-Operator/bowden-pii.git
+cd bowden-pii
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install .
+bowden-pii "Contact mia@example.ch"</code></pre>
+        <p>
+          For Windows activation and wheel installation, see the
+          <a
+            href="https://github.com/48Nauts-Operator/bowden-pii/tree/v0.0.1#install"
+            >README</a
+          >.
+        </p>
+        <div class="journal-note">
+          <strong>An early release for evaluation.</strong>
+          <p>
+            Detection can miss values or redact harmless text. Inspect results
+            and keep the original-value map local. The full JSON output includes
+            those original values.
+          </p>
+        </div>
+        <p>
+          <a href="../blog/why-bowden-pii.html"
+            >Why we are building Bowden-PII →</a
+          >
+        </p>
+      </section>
+    </main>
+    <footer class="site-footer section-wrap">
+      <div>
+        <a class="brand" href="../index.html"
+          >bowden<span class="brand-suffix">/ pii</span></a
+        >
+        <p>Privacy belongs at the beginning.</p>
+      </div>
+      <div class="footer-links">
+        <a href="../project.html">Project</a
+        ><a href="../blog/index.html">Blog</a
+        ><a href="index.html" aria-current="page">Releases</a
+        ><a href="https://github.com/48Nauts-Operator/bowden-pii">GitHub ↗</a
+        ><a href="../project.html#privacy">Privacy</a>
+      </div>
+    </footer>
+  </body>
+</html>

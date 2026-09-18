@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#193e35" />
+    <title>Releases — Bowden-PII</title>
+    <meta
+      name="description"
+      content="Version 0.0.1: Downloads und Umfang der Entwicklervorschau."
+    />
+    <meta property="og:title" content="Releases — Bowden-PII" />
+    <meta
+      property="og:description"
+      content="Version 0.0.1: Downloads und Umfang der Entwicklervorschau."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://bowden-pii.com/de/releases/" />
+    <link rel="canonical" href="https://bowden-pii.com/de/releases/" />
+    <link rel="alternate" hreflang="en" href="../../releases/index.html" />
+    <link rel="alternate" hreflang="de" href="index.html" />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href="../../releases/index.html"
+    />
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../../styles.css" />
+    <script
+      defer
+      src="https://wave.21nauts.com/script.js"
+      data-website-id="644a56e2-530f-4fff-8960-3c9409307aeb"
+    ></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Zum Inhalt springen</a>
+    <header class="site-header">
+      <a class="brand" href="../index.html" aria-label="Bowden-PII Home"
+        ><span class="brand-mark" aria-hidden="true">b<span></span></span
+        >bowden<span class="brand-suffix">/ pii</span></a
+      >
+      <nav aria-label="Hauptnavigation">
+        <a href="../project.html">Projekt</a
+        ><a href="../blog/index.html">Blog</a
+        ><a href="index.html" aria-current="page">Releases</a
+        ><a href="../index.html#about">Über Bowden</a>
+      </nav>
+      <a
+        class="header-cta"
+        href="https://github.com/48Nauts-Operator/bowden-pii"
+        >GitHub <span aria-hidden="true">↗</span></a
+      >
+      <div class="language-switch" role="group" aria-label="Sprache">
+        <a
+          href="../../releases/index.html"
+          lang="en"
+          hreflang="en"
+          aria-label="English"
+          >EN</a
+        ><a
+          href="index.html"
+          lang="de"
+          hreflang="de"
+          aria-label="Deutsch"
+          aria-current="page"
+          >DE</a
+        >
+      </div>
+    </header>
+    <nav class="mobile-site-nav" aria-label="Weitere Navigation">
+      <a href="../project.html">Projekt</a><a href="../blog/index.html">Blog</a
+      ><a href="index.html" aria-current="page">Releases</a
+      ><a href="https://github.com/48Nauts-Operator/bowden-pii">GitHub ↗</a>
+    </nav>
+    <main id="main" class="journal-wrap">
+      <p class="eyebrow">RELEASES / BOWDEN-PII</p>
+      <h1>Was Sie ausprobieren können.</h1>
+      <p class="journal-intro">
+        Versionen, Downloads und ihr tatsächlicher Umfang. Beginnen Sie mit der
+        lokalen Laufzeit und prüfen Sie die Ergebnisse an Ihren
+        Anwendungsfällen.
+      </p>
+      <section class="release-card" aria-labelledby="release-title">
+        <div class="release-meta">
+          <span class="release-badge">ENTWICKLERVORSCHAU</span
+          ><time datetime="2026-09-18">18. September 2026</time>
+        </div>
+        <h2 id="release-title">0.0.1 <span>Die lokale Grundlage.</span></h2>
+        <p>
+          Die erste öffentliche Version der Python-API und Kommandozeile für
+          regelbasierte Maskierung. Python 3.11+, ohne Modell und ohne
+          Laufzeitabhängigkeiten nutzbar.
+        </p>
+        <div class="journal-actions">
+          <a
+            class="button button-primary"
+            href="https://github.com/48Nauts-Operator/bowden-pii/releases/tag/v0.0.1"
+            >Downloads auf GitHub ↗</a
+          ><a
+            class="text-link"
+            href="https://github.com/48Nauts-Operator/bowden-pii/tree/v0.0.1"
+            >Quellcode ansehen ↗</a
+          >
+        </div>
+        <div class="release-details">
+          <h3>Enthalten</h3>
+          <ul>
+            <li>
+              AHV/AVS, UID/CHE, MWST, IBAN, QR-IBAN und Kreditkarten mit
+              passenden Format- und Prüfsummenprüfungen.
+            </li>
+            <li>
+              E-Mail, Schweizer Telefonnummernmuster, URLs, IP- und
+              MAC-Adressen.
+            </li>
+            <li>
+              Drei Richtlinien, konsistente Platzhalter, lokale Zuordnung und
+              Audit-Metadaten.
+            </li>
+            <li>
+              36 gezielte Tests, ein kleiner synthetischer Benchmark und
+              experimentelle hybride Schnittstellen.
+            </li>
+          </ul>
+          <h3>Noch nicht enthalten</h3>
+          <p>
+            Trainierte Modellgewichte, Trainingsdatensätze, Forschungswerkzeuge
+            und eine validierte allgemeine Erkennung von Namen und Adressen. Der
+            neuronale Adapter verarbeitet standardmässig maximal 256 Tokens ohne
+            Aufteilung langer Texte.
+          </p>
+        </div>
+      </section>
+      <section class="article-body">
+        <h2>Version 0.0.1 installieren</h2>
+        <p>
+          Mit Python 3.11 oder neuer. Die folgenden Aktivierungsbefehle gelten
+          für macOS und Linux.
+        </p>
+        <pre><code>git clone --branch v0.0.1 --depth 1 https://github.com/48Nauts-Operator/bowden-pii.git
+cd bowden-pii
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install .
+bowden-pii "Contact mia@example.ch"</code></pre>
+        <p>
+          Für Windows und die Installation des Wheels siehe
+          <a
+            href="https://github.com/48Nauts-Operator/bowden-pii/tree/v0.0.1#install"
+            >README</a
+          >.
+        </p>
+        <div class="journal-note">
+          <strong>Eine frühe Version zur Evaluation.</strong>
+          <p>
+            Die Erkennung kann Werte übersehen oder harmlose Angaben maskieren.
+            Prüfen Sie Ergebnisse und bewahren Sie die Zuordnung der
+            Originalwerte lokal auf. Die vollständige JSON-Ausgabe enthält diese
+            Originalwerte.
+          </p>
+        </div>
+        <p>
+          <a href="../blog/why-bowden-pii.html"
+            >Warum wir Bowden-PII entwickeln →</a
+          >
+        </p>
+      </section>
+    </main>
+    <footer class="site-footer section-wrap">
+      <div>
+        <a class="brand" href="../index.html"
+          >bowden<span class="brand-suffix">/ pii</span></a
+        >
+        <p>Datenschutz gehört an den Anfang.</p>
+      </div>
+      <div class="footer-links">
+        <a href="../project.html">Projekt</a
+        ><a href="../blog/index.html">Blog</a
+        ><a href="index.html" aria-current="page">Releases</a
+        ><a href="https://github.com/48Nauts-Operator/bowden-pii">GitHub ↗</a
+        ><a href="../project.html#privacy">Datenschutz</a>
+      </div>
+    </footer>
+  </body>
+</html>

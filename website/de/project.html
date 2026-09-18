@@ -15,7 +15,11 @@
     <link rel="alternate" hreflang="de" href="./project.html" />
     <link rel="alternate" hreflang="x-default" href="../project.html" />
     <link rel="canonical" href="https://bowden-pii.com/de/project.html" />
-    <script defer src="https://wave.21nauts.com/script.js" data-website-id="644a56e2-530f-4fff-8960-3c9409307aeb"></script>
+    <script
+      defer
+      src="https://wave.21nauts.com/script.js"
+      data-website-id="644a56e2-530f-4fff-8960-3c9409307aeb"
+    ></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Zum Inhalt springen</a>
@@ -26,10 +30,13 @@
       >
       <nav aria-label="Hauptnavigation">
         <a href="./#approach">Der Ansatz</a><a href="./#roadmap">Roadmap</a
-        ><a href="./#about">Über Bowden</a>
+        ><a href="./#about">Über Bowden</a> <a href="./blog/">Blog</a
+        ><a href="./releases/">Releases</a>
       </nav>
-      <a class="header-cta" href="./"
-        >Zurück zur Website <span aria-hidden="true">↗</span></a
+      <a
+        class="header-cta"
+        href="https://github.com/48Nauts-Operator/bowden-pii"
+        >GitHub <span aria-hidden="true">↗</span></a
       >
       <div class="language-switch" role="group" aria-label="Sprache">
         <a href="../project.html" lang="en" hreflang="en" aria-label="English"
@@ -44,6 +51,11 @@
         >
       </div>
     </header>
+    <nav class="mobile-site-nav" aria-label="Weitere Navigation">
+      <a href="./project.html">Projekt</a><a href="./blog/">Blog</a
+      ><a href="./releases/">Releases</a
+      ><a href="https://github.com/48Nauts-Operator/bowden-pii">GitHub ↗</a>
+    </nav>
     <main id="main">
       <div class="guide-hero section-wrap">
         <p class="eyebrow">PROJEKTDETAILS / FRÜHE ENTWICKLUNGSPHASE</p>
@@ -74,9 +86,10 @@
               Token-Klassifikator.
             </p>
             <p>
-              Das Repository enthält ausserdem Werkzeuge zur Erzeugung
-              synthetischer Daten, für Benchmarks und Training sowie eine lokale
-              Oberfläche zur Prüfung extrahierter öffentlicher Dokumente.
+              Die öffentliche Version 0.0.1 enthält die lokale Laufzeit,
+              gezielte Tests und einen kleinen synthetischen Benchmark.
+              Trainingsdatensätze, Modellgewichte und Forschungswerkzeuge
+              gehören nicht zu diesem Download.
             </p>
             <div class="guide-note">
               <p>
@@ -129,12 +142,17 @@
           <section id="getting-started">
             <h2>Mit der lokalen Laufzeit starten</h2>
             <p>
-              Die folgenden Befehle werden in einer lokalen Kopie des
-              Bowden-PII-Quellcodes mit Python 3.11 oder neuer ausgeführt. Wird
-              die Website separat veröffentlicht, enthält ihr Repository nur die
-              Website und nicht das Python-Paket.
+              Die öffentliche Entwicklervorschau 0.0.1 ist auf
+              <a href="https://github.com/48Nauts-Operator/bowden-pii"
+                >GitHub</a
+              >
+              verfügbar. Sie benötigen Python 3.11 oder neuer. Die
+              Standard-Engine arbeitet ohne Modellgewichte.
+              <a href="./releases/">Downloads und Versionshinweise</a>.
             </p>
-            <pre><code>python3 -m venv .venv
+            <pre><code>git clone --branch v0.0.1 --depth 1 https://github.com/48Nauts-Operator/bowden-pii.git
+cd bowden-pii
+python3 -m venv .venv
 source .venv/bin/activate
 pip install -e .</code></pre>
             <p>Verwenden Sie die API in Ihrer Anwendung:</p>
@@ -276,6 +294,8 @@ audit = result.audit</code></pre>
         <p>Datenschutz gehört an den Anfang.</p>
       </div>
       <div class="footer-links">
+        <a href="./blog/">Blog</a><a href="./releases/">Releases</a
+        ><a href="https://github.com/48Nauts-Operator/bowden-pii">GitHub ↗</a>
         <a href="./">Startseite</a><a href="./#about">Über Caspar Bowden</a
         ><a href="./#roadmap">Roadmap</a>
       </div>
