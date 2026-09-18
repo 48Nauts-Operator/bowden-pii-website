@@ -1,0 +1,660 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#183f36" />
+    <meta
+      name="description"
+      content="Bowden-PII is an open-source local privacy layer for Swiss and European data. Detect sensitive identifiers and redact text before it reaches an AI service."
+    />
+    <meta
+      property="og:title"
+      content="Bowden-PII — Keep the context. Keep your privacy."
+    />
+    <meta
+      property="og:description"
+      content="A local privacy layer for Swiss and European data. Explore the project, its working redaction core, and what comes next."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://bowden-pii.com/" />
+    <meta property="og:locale" content="en_GB" />
+    <title>Bowden-PII — Keep the context. Keep your privacy.</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./examples.js" defer></script>
+    <script src="./site.js" defer></script>
+    <script src="./motion.js" defer></script>
+    <link rel="alternate" hreflang="en" href="./index.html" />
+    <link rel="alternate" hreflang="de" href="./de/index.html" />
+    <link rel="alternate" hreflang="x-default" href="./index.html" />
+    <link rel="canonical" href="https://bowden-pii.com/" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="Bowden-PII home"
+        ><span class="brand-mark" aria-hidden="true">b<span></span></span
+        >bowden<span class="brand-suffix">/ pii</span></a
+      >
+      <nav aria-label="Main navigation">
+        <a href="#approach">The approach</a>
+        <a href="#in-practice">In practice</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#about">About</a>
+      </nav>
+      <a class="header-cta" href="#get-started"
+        >Explore the project <span aria-hidden="true">↗</span></a
+      >
+      <div class="language-switch" role="group" aria-label="Language">
+        <a
+          href="./index.html"
+          lang="en"
+          hreflang="en"
+          aria-label="English"
+          aria-current="page"
+          >EN</a
+        ><a href="./de/index.html" lang="de" hreflang="de" aria-label="Deutsch"
+          >DE</a
+        >
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero section-wrap" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">
+            <span class="status-dot"></span> LOCAL PRIVACY. EUROPEAN CONTEXT.
+          </p>
+          <h1 id="hero-title">
+            Keep the context.<br />Keep your <em>privacy.</em>
+          </h1>
+          <p class="hero-description">
+            Useful AI shouldn’t need your sensitive data. Bowden-PII detects and
+            redacts personal identifiers locally, before your text reaches the
+            cloud.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#in-practice"
+              >See it in practice <span aria-hidden="true">↗</span></a
+            >
+            <a class="text-link" href="#approach"
+              >Meet Bowden-PII <span aria-hidden="true">↓</span></a
+            >
+          </div>
+          <p class="hero-note">
+            <span class="small-cross" aria-hidden="true">+</span> Swiss / EU
+            focus <span>·</span> Open-source project <span>·</span> Early
+            development
+          </p>
+        </div>
+
+        <div
+          class="privacy-diagram"
+          role="img"
+          aria-label="A local document enters Bowden-PII. Sensitive values stay local, while redacted text can be sent to an AI service."
+        >
+          <div class="diagram-topline">
+            <span>THE PRIVACY BOUNDARY</span><span>FIG. 01</span>
+          </div>
+          <div class="diagram-orbit orbit-one"></div>
+          <div class="diagram-orbit orbit-two"></div>
+          <div class="diagram-document">
+            <div class="document-heading">
+              <span class="document-icon" aria-hidden="true">≡</span>
+              client-note.txt <span class="document-dot"></span>
+            </div>
+            <div class="document-body">
+              <span>Account update</span><br /><span
+                class="document-line"
+              ></span
+              ><span class="sensitive-line"></span
+              ><span class="document-line short"></span
+              ><span class="sensitive-line medium"></span>
+            </div>
+          </div>
+          <div class="connector connector-top"></div>
+          <div class="diagram-engine">
+            <span class="engine-symbol" aria-hidden="true">b<span></span></span>
+            <div>
+              <strong>bowden / pii</strong
+              ><span>DETECT → VALIDATE → REDACT</span>
+            </div>
+            <span class="engine-check" aria-hidden="true">✓</span>
+          </div>
+          <div class="diagram-boundary">
+            <span>STAYS LOCAL</span
+            ><span class="boundary-lock" aria-hidden="true">↓</span
+            ><span>SHARED AS NEEDED</span>
+          </div>
+          <div class="diagram-output">
+            <span class="output-tag">[EMAIL_1]</span
+            ><span class="output-tag">[IBAN_1]</span
+            ><span class="output-line"></span
+            ><span class="output-tag small">[AHV_1]</span
+            ><span class="output-line short"></span>
+          </div>
+          <div class="diagram-caption">
+            <span class="status-dot"></span> The meaning moves. The identifiers
+            don’t.
+          </div>
+        </div>
+      </section>
+
+      <div class="principles-strip">
+        <div><span>01 /</span> Process on your terms</div>
+        <div><span>02 /</span> Minimize before you send</div>
+        <div><span>03 /</span> Preserve useful context</div>
+      </div>
+
+      <section
+        class="motion-section section-wrap"
+        aria-labelledby="motion-title"
+      >
+        <div class="motion-heading">
+          <div>
+            <p class="eyebrow">THE BOUNDARY, IN MOTION</p>
+            <h2 id="motion-title">Let the meaning through.</h2>
+          </div>
+          <p>
+            Identifiers become placeholders.<br />The original values stay on
+            your side.
+          </p>
+        </div>
+        <div class="motion-stage" id="motion-stage">
+          <canvas id="privacy-canvas" aria-hidden="true"></canvas>
+          <div class="motion-topline">
+            <span>YOUR ENVIRONMENT</span><span>REDACTED OUTPUT</span>
+          </div>
+          <div class="motion-bottomline">
+            <span id="motion-phase">01 / DETECT</span
+            ><button
+              type="button"
+              id="motion-toggle"
+              aria-label="Pause animation"
+            >
+              Pause animation <span aria-hidden="true">Ⅱ</span>
+            </button>
+          </div>
+          <div class="motion-fallback">
+            <span>mia@example.ch</span><span>→ bowden / pii →</span
+            ><span>[EMAIL_1]</span>
+          </div>
+        </div>
+        <p class="motion-note">
+          Illustration using fictional contact details. The animation does not
+          run the detector.
+        </p>
+      </section>
+
+      <section
+        id="approach"
+        class="section-wrap approach"
+        aria-labelledby="approach-title"
+      >
+        <div class="section-heading">
+          <p class="eyebrow">THE APPROACH</p>
+          <h2 id="approach-title">
+            A small layer.<br />A meaningful boundary.
+          </h2>
+          <p>
+            Personally identifiable information (PII) turns everyday text into
+            sensitive data. Bowden-PII is a local guard for the emails,
+            documents, and records you want to work with.
+          </p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature">
+            <span class="feature-number">01 — RECOGNIZE</span>
+            <div class="feature-icon identifier-icon" aria-hidden="true">
+              756.<span>••••</span>
+            </div>
+            <h3>Built around real identifiers</h3>
+            <p>
+              Checksum-aware rules for Swiss AHV/AVS, UID/CHE, IBAN, and credit
+              cards, alongside contact and network identifiers.
+            </p>
+            <span class="feature-label">Deterministic core available</span>
+          </article>
+          <article class="feature">
+            <span class="feature-number">02 — REPLACE</span>
+            <div class="feature-icon placeholder-icon" aria-hidden="true">
+              [<span>PII</span>_1]
+            </div>
+            <h3>Keep the useful parts</h3>
+            <p>
+              Replace detected values with consistent, typed placeholders. A
+              local map retains the originals for your application to manage.
+            </p>
+            <span class="feature-label"
+              >Stable placeholders + audit metadata</span
+            >
+          </article>
+          <article class="feature">
+            <span class="feature-number">03 — EXTEND</span>
+            <div class="feature-icon neural-icon" aria-hidden="true">
+              <i></i><i></i><i></i><i></i><i></i>
+            </div>
+            <h3>Go beyond fixed patterns</h3>
+            <p>
+              An optional neural detector explores names, address components,
+              and noisy text. Validated rules take priority when detections
+              overlap.
+            </p>
+            <span class="feature-label">Experimental hybrid runtime</span>
+          </article>
+        </div>
+      </section>
+
+      <section
+        id="in-practice"
+        class="practice-section"
+        aria-labelledby="practice-title"
+      >
+        <div class="section-wrap">
+          <div class="practice-heading">
+            <div>
+              <p class="eyebrow">IN PRACTICE</p>
+              <h2 id="practice-title">Same message.<br />Less exposure.</h2>
+            </div>
+            <p>
+              See what the deterministic Python engine does with a few sample
+              records. These are precomputed examples using fictional contact
+              details and test identifiers.
+            </p>
+          </div>
+          <div class="example-toolbar">
+            <div
+              class="sample-controls"
+              role="group"
+              aria-label="Choose an example"
+            >
+              <button
+                type="button"
+                class="sample-button active"
+                data-example="account"
+                aria-pressed="true"
+              >
+                Account update</button
+              ><button
+                type="button"
+                class="sample-button"
+                data-example="support"
+                aria-pressed="false"
+              >
+                Support log</button
+              ><button
+                type="button"
+                class="sample-button"
+                data-example="invoice"
+                aria-pressed="false"
+              >
+                Invoice note
+              </button>
+            </div>
+            <label class="policy-control"
+              >Policy
+              <select id="policy">
+                <option value="strict">Strict</option>
+                <option value="balanced">Balanced</option>
+                <option value="permissive">Permissive</option>
+              </select></label
+            >
+          </div>
+          <div class="example-panels">
+            <div class="example-panel">
+              <div class="panel-label">
+                <span
+                  ><span class="tiny-dot original-dot"></span> ORIGINAL
+                  TEXT</span
+                ><span>01 / INPUT</span>
+              </div>
+              <pre id="original-text">
+Please update the account contact to mia@example.ch.
+AHV: 756.9217.0769.85
+IBAN: CH93 0076 2011 6238 5295 7
+Send confirmation to mia@example.ch.</pre
+              >
+              <div class="panel-footnote">
+                Sensitive values are highlighted.
+              </div>
+            </div>
+            <div class="example-panel redacted-panel">
+              <div class="panel-label">
+                <span
+                  ><span class="tiny-dot redacted-dot"></span> REDACTED
+                  TEXT</span
+                ><span>02 / OUTPUT</span>
+              </div>
+              <pre id="redacted-text">
+Please update the account contact to [EMAIL_1].
+AHV: [AHV_1]
+IBAN: [IBAN_1]
+Send confirmation to [EMAIL_1].</pre
+              >
+              <div class="panel-footnote">
+                Repeated values keep the same placeholder.
+              </div>
+            </div>
+          </div>
+          <div class="example-summary">
+            <p id="example-summary" role="status" aria-live="polite">
+              4 spans redacted · 3 unique placeholders
+            </p>
+            <span>Precomputed locally · No text upload</span>
+          </div>
+          <p id="policy-description" class="policy-description">
+            Strict includes all supported deterministic identifier classes,
+            including URLs.
+          </p>
+          <noscript
+            ><p class="noscript-note">
+              JavaScript is disabled. The account example above shows
+              strict-policy output. Enable JavaScript to switch examples and
+              policies.
+            </p></noscript
+          >
+        </div>
+      </section>
+
+      <section
+        class="section-wrap workflow-section"
+        aria-labelledby="workflow-title"
+      >
+        <div class="section-heading">
+          <p class="eyebrow">WHERE IT FITS</p>
+          <h2 id="workflow-title">
+            Before the prompt.<br />Before the log. Before the API.
+          </h2>
+          <p>
+            Add redaction where text crosses your application's privacy
+            boundary. The Python API and CLI are the starting points today.
+          </p>
+        </div>
+        <div class="flow" aria-label="Workflow">
+          <div>
+            <span>01</span><strong>Your text</strong>
+            <p>Email, extracted documents,<br />support notes, or logs</p>
+          </div>
+          <span class="flow-arrow" aria-hidden="true">→</span>
+          <div class="flow-bowden">
+            <span>02 / LOCAL</span><strong>Bowden-PII</strong>
+            <p>Detect identifiers.<br />Replace them with placeholders.</p>
+          </div>
+          <span class="flow-arrow" aria-hidden="true">→</span>
+          <div>
+            <span>03</span><strong>Your next step</strong>
+            <p>
+              Send redacted text to an LLM,<br />an API, or downstream tooling.
+            </p>
+          </div>
+        </div>
+        <div class="boundary-note">
+          <span aria-hidden="true">↳</span>
+          <p>
+            <strong>The placeholder map stays with your application.</strong>
+            Tenant isolation, encrypted storage, and controlled restoration are
+            integration responsibilities today.
+          </p>
+        </div>
+      </section>
+
+      <section
+        id="roadmap"
+        class="roadmap-section section-wrap"
+        aria-labelledby="roadmap-title"
+      >
+        <div class="roadmap-intro">
+          <p class="eyebrow">BUILT IN THE OPEN</p>
+          <h2 id="roadmap-title">Working today.<br />Going further.</h2>
+          <p>
+            A practical foundation first, then broader coverage and stronger
+            evaluation. This is an early development project; the roadmap
+            describes direction, not release commitments.
+          </p>
+          <a href="./project.html#status" class="text-link"
+            >Read the project notes <span aria-hidden="true">↗</span></a
+          >
+          <div class="roadmap-stamp">
+            <span class="status-dot"></span> EARLY DEVELOPMENT
+          </div>
+        </div>
+        <div class="roadmap-items">
+          <article class="roadmap-item">
+            <div class="roadmap-index">01</div>
+            <div>
+              <span class="status-label available">IMPLEMENTED</span>
+              <h3>A local foundation</h3>
+              <p>
+                Deterministic detection, typed placeholders, three policy
+                presets, Python API, CLI, and audit metadata without raw values.
+              </p>
+            </div>
+          </article>
+          <article class="roadmap-item">
+            <div class="roadmap-index">02</div>
+            <div>
+              <span class="status-label experimental">EXPERIMENTAL</span>
+              <h3>Learning from context</h3>
+              <p>
+                Optional hybrid detection, MiniLM training runs, synthetic
+                multilingual data, and local tools for reviewing public-document
+                extraction.
+              </p>
+            </div>
+          </article>
+          <article class="roadmap-item">
+            <div class="roadmap-index">03</div>
+            <div>
+              <span class="status-label planned">NEXT</span>
+              <h3>Test against messier reality</h3>
+              <p>
+                Broaden public-document and OCR evaluation, strengthen hard
+                negatives, expand phone coverage, and compare a multilingual
+                model.
+              </p>
+            </div>
+          </article>
+          <article class="roadmap-item">
+            <div class="roadmap-index">04</div>
+            <div>
+              <span class="status-label planned">LONGER TERM</span>
+              <h3>Bring the boundary closer</h3>
+              <p>
+                Explore browser and sidecar deployments, managed placeholder
+                storage, and explicit controls for local restoration.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section
+        id="about"
+        class="section-wrap about-section"
+        aria-labelledby="about-title"
+      >
+        <div class="about-person">
+          <p class="eyebrow">THE PERSON BEHIND THE NAME</p>
+          <h2 id="about-title">Caspar<br />Bowden.</h2>
+          <p>
+            Privacy advocate. Independent thinker.<br />A voice for rights
+            across borders.
+          </p>
+          <dl class="about-timeline">
+            <div>
+              <dt>1998</dt>
+              <dd>Co-founds FIPR; its first director</dd>
+            </div>
+            <div>
+              <dt>2002</dt>
+              <dd>Joins Microsoft as a privacy adviser</dd>
+            </div>
+            <div>
+              <dt>2013</dt>
+              <dd>Reports to the European Parliament</dd>
+            </div>
+          </dl>
+        </div>
+        <div class="about-story">
+          <h3>A name with a purpose.</h3>
+          <p>
+            Caspar Bowden was a British privacy advocate who helped establish
+            the Foundation for Information Policy Research and later served as
+            Microsoft’s chief privacy adviser for Europe, the Middle East and
+            Africa.
+            <a
+              class="source-ref"
+              href="https://edri.org/our-work/remembering-caspar-bowden/"
+              aria-label="Source: EDRi’s remembrance of Caspar Bowden"
+              >[1]</a
+            >
+          </p>
+          <p>
+            Before the Snowden disclosures, he warned that cloud computing could
+            expose European data to foreign surveillance. He brought technical
+            detail and human rights into the same conversation.
+            <a
+              class="source-ref"
+              href="https://www.openrightsgroup.org/app/uploads/2020/03/How_to_wiretap_the_Cloud-25.1.2013.pdf"
+              aria-label="Source: Caspar Bowden’s January 2013 cloud talk, PDF"
+              >[2]</a
+            >
+          </p>
+          <div class="about-inspiration">
+            <h4>Our response: minimize before you send.</h4>
+            <p>
+              Bowden-PII takes inspiration from that concern. It aims to make
+              local data minimization a practical step before using cloud AI:
+              detect sensitive identifiers, replace them locally, and keep the
+              original values under your control.
+            </p>
+          </div>
+          <div class="about-sources">
+            <a href="https://edri.org/our-work/remembering-caspar-bowden/"
+              >Remembering Caspar · EDRi ↗</a
+            ><a
+              href="https://www.openrightsgroup.org/app/uploads/2020/03/How_to_wiretap_the_Cloud-25.1.2013.pdf"
+              >His 2013 cloud talk ↗</a
+            ><a
+              href="https://www.europarl.europa.eu/RegData/etudes/note/join/2013/474405/IPOL-LIBE_NT%282013%29474405_EN.pdf"
+              >European Parliament report ↗</a
+            >
+          </div>
+          <p class="about-disclaimer">
+            Named in his honor. This project is independent and unaffiliated
+            with Caspar Bowden’s estate or any organization. This is our
+            interpretation of his influence, not an endorsement.
+          </p>
+        </div>
+      </section>
+
+      <section
+        id="get-started"
+        class="get-started section-wrap"
+        aria-labelledby="start-title"
+      >
+        <div>
+          <p class="eyebrow">A BETTER STARTING POINT FOR AI</p>
+          <h2 id="start-title">Less personal data.<br />More possibility.</h2>
+          <p>
+            Explore the implementation, understand the tradeoffs, and help shape
+            a privacy layer built for Swiss and European workflows.
+          </p>
+          <a class="button button-light" href="./project.html"
+            >Explore the project <span aria-hidden="true">↗</span></a
+          >
+        </div>
+        <div class="code-preview">
+          <div class="code-topline">
+            <span>PYTHON / LOCAL RUNTIME</span
+            ><span aria-hidden="true">● ● ●</span>
+          </div>
+          <pre><code><span class="code-muted">from</span> bowden_pii <span class="code-muted">import</span> redact
+
+result = redact(
+    <span class="code-string">"Contact mia@example.ch"</span>,
+    policy=<span class="code-string">"strict"</span>,
+)
+
+print(result.redacted)
+<span class="code-comment"># Contact [EMAIL_1]</span></code></pre>
+          <a href="./project.html#getting-started"
+            >Installation &amp; usage <span aria-hidden="true">→</span></a
+          >
+        </div>
+      </section>
+
+      <section class="section-wrap faq-section" aria-labelledby="faq-title">
+        <div>
+          <p class="eyebrow">A FEW GOOD QUESTIONS</p>
+          <h2 id="faq-title">Clear by design.</h2>
+        </div>
+        <div class="faq-items">
+          <details>
+            <summary>
+              Is Bowden-PII an LLM?<span aria-hidden="true">+</span>
+            </summary>
+            <p>
+              It is a local detection and redaction layer that can sit in front
+              of an LLM or another service. Its deterministic core works without
+              a neural model. The optional hybrid runtime adds a small
+              token-classification model.
+            </p>
+          </details>
+          <details>
+            <summary>
+              Does this website process my data?<span aria-hidden="true"
+                >+</span
+              >
+            </summary>
+            <p>
+              The examples are fixed, precomputed fixtures. This site has no
+              text-upload form, analytics, or third-party scripts. Hosting
+              providers still receive ordinary web requests. Running Bowden-PII
+              on your own data requires the local Python runtime.
+            </p>
+          </details>
+          <details>
+            <summary>
+              Is it ready for production?<span aria-hidden="true">+</span>
+            </summary>
+            <p>
+              Bowden-PII is in early development. A working core and
+              experimental model runs are available, but synthetic benchmark
+              results do not establish real-world reliability. Evaluate your own
+              data, review missed detections and false positives, and build the
+              surrounding privacy controls before relying on it.
+            </p>
+          </details>
+          <details>
+            <summary>
+              Why the name Bowden?<span aria-hidden="true">+</span>
+            </summary>
+            <p>
+              The project is named in honor of Caspar Bowden and his work on
+              privacy and cloud surveillance. It is independent and unaffiliated
+              with his estate or any organization.
+            </p>
+          </details>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer section-wrap">
+      <div>
+        <a class="brand" href="./"
+          ><span class="brand-mark" aria-hidden="true">b<span></span></span
+          >bowden<span class="brand-suffix">/ pii</span></a
+        >
+        <p>Privacy belongs at the beginning.</p>
+      </div>
+      <div class="footer-links">
+        <a href="./project.html">Project notes</a><a href="#roadmap">Roadmap</a
+        ><a href="./project.html#privacy">Privacy &amp; limitations</a>
+      </div>
+      <p class="footer-note">
+        Independent open-source project.<br />Swiss focus. European ambition.
+      </p>
+    </footer>
+  </body>
+</html>

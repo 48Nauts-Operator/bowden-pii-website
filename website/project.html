@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#193e35" />
+    <meta
+      name="description"
+      content="Bowden-PII project notes: current capabilities, local Python usage, experimental models, privacy responsibilities, and the roadmap."
+    />
+    <title>Project notes — Bowden-PII</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="alternate" hreflang="en" href="./project.html" />
+    <link rel="alternate" hreflang="de" href="./de/project.html" />
+    <link rel="alternate" hreflang="x-default" href="./project.html" />
+    <link rel="canonical" href="https://bowden-pii.com/project.html" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="Bowden-PII home"
+        ><span class="brand-mark" aria-hidden="true">b<span></span></span
+        >bowden<span class="brand-suffix">/ pii</span></a
+      >
+      <nav aria-label="Main navigation">
+        <a href="./#approach">The approach</a><a href="./#roadmap">Roadmap</a
+        ><a href="./#about">About</a>
+      </nav>
+      <a class="header-cta" href="./"
+        >Back to the website <span aria-hidden="true">↗</span></a
+      >
+      <div class="language-switch" role="group" aria-label="Language">
+        <a
+          href="./project.html"
+          lang="en"
+          hreflang="en"
+          aria-label="English"
+          aria-current="page"
+          >EN</a
+        ><a
+          href="./de/project.html"
+          lang="de"
+          hreflang="de"
+          aria-label="Deutsch"
+          >DE</a
+        >
+      </div>
+    </header>
+    <main id="main">
+      <div class="guide-hero section-wrap">
+        <p class="eyebrow">PROJECT NOTES / EARLY DEVELOPMENT</p>
+        <h1>A local privacy layer.<br />A project you can inspect.</h1>
+        <p>
+          Bowden-PII detects and replaces personal identifiers before text
+          reaches another service. These notes distinguish the working
+          foundation from the longer-term design.
+        </p>
+      </div>
+      <div class="guide-layout section-wrap">
+        <nav class="guide-nav" aria-label="Project notes">
+          <a href="#status">Current status</a
+          ><a href="#coverage">Identifier coverage</a
+          ><a href="#getting-started">Getting started</a
+          ><a href="#policies">Policy presets</a
+          ><a href="#research">Model &amp; research</a
+          ><a href="#privacy">Privacy &amp; limitations</a>
+        </nav>
+        <div class="guide-content">
+          <section id="status">
+            <h2>Working code. Early development.</h2>
+            <p>
+              The deterministic Python core, CLI, stable typed placeholders,
+              local placeholder map, and public audit metadata are implemented.
+              An optional hybrid runtime combines rules with a local neural
+              token classifier.
+            </p>
+            <p>
+              The repository also includes synthetic data generation, benchmark
+              and training tools, and a local dashboard for reviewing extracted
+              public documents.
+            </p>
+            <div class="guide-note">
+              <p>
+                This is an early development project. A working implementation
+                and successful synthetic evaluations do not establish production
+                reliability. Evaluate your own data and workflow before relying
+                on the results.
+              </p>
+            </div>
+          </section>
+          <section id="coverage">
+            <h2>What the rules detect</h2>
+            <table class="coverage-table">
+              <thead>
+                <tr>
+                  <th scope="col">Category</th>
+                  <th scope="col">Implemented scope</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Swiss identifiers</td>
+                  <td>AHV/AVS/NSS, UID/CHE, Swiss VAT suffixes</td>
+                </tr>
+                <tr>
+                  <td>Financial identifiers</td>
+                  <td>IBAN, Swiss QR-IBAN, credit cards</td>
+                </tr>
+                <tr>
+                  <td>Contact details</td>
+                  <td>Email, conservative Swiss phone patterns</td>
+                </tr>
+                <tr>
+                  <td>Network identifiers</td>
+                  <td>URLs, IP addresses, MAC addresses</td>
+                </tr>
+              </tbody>
+            </table>
+            <p>
+              Checksums and validation rules are used where appropriate. Broader
+              European phone and tax-identifier coverage remains future work.
+              Names and address components belong to the experimental neural
+              scope.
+            </p>
+          </section>
+          <section id="getting-started">
+            <h2>Start with the local runtime</h2>
+            <p>
+              The commands below run from a Bowden-PII source checkout with
+              Python 3.11 or newer. The website repository, if published
+              separately, contains only this site and is not the Python package.
+            </p>
+            <pre><code>python3 -m venv .venv
+source .venv/bin/activate
+pip install -e .</code></pre>
+            <p>Use the API in your application:</p>
+            <pre><code>from bowden_pii import redact
+
+result = redact(
+    "Contact mia@example.ch",
+    policy="strict",
+)
+
+print(result.redacted)
+# Contact [EMAIL_1]
+
+# Retain this only inside your local privacy boundary.
+local_map = result.placeholder_map
+
+# Audit metadata excludes the raw detected values.
+audit = result.audit</code></pre>
+            <p>Or use the CLI:</p>
+            <pre><code>bowden-pii --policy strict "Contact mia@example.ch"</code></pre>
+            <p>
+              Typed placeholders are consistent within one redaction result.
+              Applications are responsible for managing maps across documents,
+              sessions, and tenants. The deterministic core has no runtime
+              dependencies; neural and OCR paths require additional setup and
+              assets.
+            </p>
+          </section>
+          <section id="policies">
+            <h2>Choose what to redact</h2>
+            <table class="coverage-table">
+              <thead>
+                <tr>
+                  <th scope="col">Preset</th>
+                  <th scope="col">Deterministic behavior</th>
+                  <th scope="col">Hybrid threshold</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Strict</td>
+                  <td>All supported classes</td>
+                  <td>0.5</td>
+                </tr>
+                <tr>
+                  <td>Balanced</td>
+                  <td>Keeps URLs</td>
+                  <td>0.7</td>
+                </tr>
+                <tr>
+                  <td>Permissive</td>
+                  <td>AHV, IBAN, QR-IBAN, VAT, cards, email, phone</td>
+                  <td>0.9</td>
+                </tr>
+              </tbody>
+            </table>
+            <p>
+              For hybrid detection, the threshold controls which neural
+              candidates are retained. Validated deterministic spans take
+              priority on overlap. Lower thresholds can increase recall and
+              false positives; measure that tradeoff on your own material.
+            </p>
+          </section>
+          <section id="research">
+            <h2>Beyond well-formed identifiers</h2>
+            <p>
+              The experimental neural layer explores names, address components,
+              and OCR-style noise. MiniLM smoke training and a larger 12,000-row
+              synthetic training run have been completed. These are research
+              baselines, not a validated general-purpose model release.
+            </p>
+            <p>
+              The next priorities are broader public-document and OCR
+              evaluation, stronger negative examples, expanded phone coverage,
+              and a multilingual checkpoint comparison. German, French, Italian,
+              and English appear in the synthetic data strategy; real-world
+              multilingual performance still needs broader evaluation.
+            </p>
+            <p>
+              Browser execution, sidecar services, managed map storage, and
+              controlled local restoration are longer-term directions. The
+              website’s animated visual is an illustration; the interactive
+              examples are precomputed using the deterministic Python engine.
+            </p>
+          </section>
+          <section id="privacy">
+            <h2>Privacy is an integration responsibility</h2>
+            <p>
+              Run detection inside your intended privacy boundary and send only
+              the redacted text onward. Keep placeholder maps local, isolate
+              them between tenants, protect their storage, and control who can
+              restore original values.
+            </p>
+            <p>
+              Redaction can miss identifiers, and apparently ordinary context
+              may still identify a person. This project does not guarantee
+              anonymity or regulatory compliance. It does not replace access
+              control, encryption, retention policies, or review of what leaves
+              your system.
+            </p>
+            <p>
+              Review the whole workflow: prompt logs, exception traces,
+              analytics, embeddings, document extraction, screenshots, and cloud
+              fallbacks can expose source material even if the final prompt is
+              redacted.
+            </p>
+            <h3>About this website</h3>
+            <p>
+              This static website has no analytics, cookies, text-upload form,
+              third-party scripts, or externally loaded fonts. It makes ordinary
+              requests to its hosting provider, which may maintain access logs.
+              The animation and examples do not upload text. External reference
+              links only open when you follow them.
+            </p>
+            <p>
+              The project is
+              <a href="./#about">named in honor of Caspar Bowden</a>. It is
+              independent and unaffiliated with his estate or any organization.
+            </p>
+          </section>
+        </div>
+      </div>
+    </main>
+    <footer class="site-footer section-wrap">
+      <div>
+        <a class="brand" href="./"
+          >bowden<span class="brand-suffix">/ pii</span></a
+        >
+        <p>Privacy belongs at the beginning.</p>
+      </div>
+      <div class="footer-links">
+        <a href="./">Home</a><a href="./#about">About Caspar Bowden</a
+        ><a href="./#roadmap">Roadmap</a>
+      </div>
+    </footer>
+  </body>
+</html>
