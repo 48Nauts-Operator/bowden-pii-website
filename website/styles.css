@@ -2452,3 +2452,311 @@ html:lang(de) .roadmap-item h3 {
     transition: none;
   }
 }
+
+/* GitHub navigation links use the official Primer mark and an accessible name. */
+.github-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  color: var(--ink);
+}
+.github-link:hover {
+  color: var(--orange);
+}
+.github-logo {
+  display: block;
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+.mobile-site-nav {
+  align-items: center;
+}
+.footer-links {
+  align-items: center;
+  flex-wrap: wrap;
+}
+@media (max-width: 800px) {
+  .site-header nav {
+    display: none;
+  }
+  .mobile-site-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px 22px;
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--line);
+    font-size: 12px;
+  }
+}
+
+/* Connected milestones distinguish shipped code, experiments and future work. */
+.roadmap-section {
+  display: block;
+  padding-block: 76px 90px;
+}
+.roadmap-heading {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 60px;
+  align-items: end;
+}
+.roadmap-heading h2 {
+  margin-top: 22px;
+}
+.roadmap-overview {
+  max-width: 440px;
+}
+.roadmap-overview p {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.8;
+  margin-bottom: 22px;
+}
+.roadmap-track {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin: 48px 0 0;
+  padding: 0;
+}
+.roadmap-stage {
+  position: relative;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.roadmap-stage:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 44px;
+  right: -18px;
+  top: 21px;
+  border-top: 1px dashed #a7b3a1;
+}
+.roadmap-available::after {
+  border-top: 2px solid #598268 !important;
+}
+.roadmap-node {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid #a7b3a1;
+  background: var(--paper);
+  color: var(--muted);
+  margin-bottom: 22px;
+  position: relative;
+  z-index: 1;
+}
+.roadmap-node svg {
+  width: 23px;
+  height: 23px;
+}
+.roadmap-available .roadmap-node {
+  color: var(--paper);
+  background: var(--ink);
+  border-color: var(--ink);
+}
+.roadmap-experimental .roadmap-node {
+  color: #8b4c2a;
+  background: #f4e4d5;
+  border-color: #c38c67;
+  box-shadow:
+    0 0 0 5px var(--paper),
+    0 0 0 6px #ddc0a8;
+}
+.roadmap-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 22px 20px 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+}
+.roadmap-available .roadmap-card {
+  background: #eef2e7;
+  border-color: #c3d1ba;
+}
+.roadmap-experimental .roadmap-card {
+  border-top: 3px solid #bf8259;
+  padding-top: 20px;
+}
+.roadmap-card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  font: 10px/1.5 var(--mono);
+}
+.roadmap-step {
+  color: var(--muted);
+}
+.roadmap-status {
+  font-size: 8px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+.roadmap-available .roadmap-status {
+  color: #35563b;
+}
+.roadmap-experimental .roadmap-status {
+  color: #8b4c2a;
+}
+.roadmap-card h3 {
+  font-size: 24px;
+  line-height: 1.2;
+  letter-spacing: -0.6px;
+  margin: 22px 0 14px;
+}
+.roadmap-card > p {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+.roadmap-detail {
+  margin-top: auto;
+  border-top: 1px solid var(--line);
+}
+.roadmap-detail summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  list-style: none;
+  padding: 17px 0;
+  font-size: 11px;
+  line-height: 1.5;
+}
+.roadmap-detail summary::-webkit-details-marker {
+  display: none;
+}
+.roadmap-plus {
+  font: 20px/1 var(--mono);
+  transition: transform 0.15s;
+}
+.roadmap-detail[open] .roadmap-plus {
+  transform: rotate(45deg);
+}
+.roadmap-detail ul {
+  padding-left: 16px;
+  margin: 0 0 18px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+.roadmap-detail li {
+  margin: 8px 0;
+}
+.roadmap-detail a {
+  display: inline-block;
+  margin: 0 0 20px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  font-size: 11px;
+  line-height: 1.6;
+}
+.roadmap-caption {
+  font: 10px/1.8 var(--mono);
+  color: var(--muted);
+  margin-top: 24px;
+}
+html:lang(de) .roadmap-card h3 {
+  font-size: 22px;
+  hyphens: auto;
+  overflow-wrap: break-word;
+}
+@media (max-width: 1000px) {
+  .roadmap-heading {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+  .roadmap-overview {
+    max-width: 620px;
+  }
+  .roadmap-track {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    margin-top: 38px;
+  }
+  .roadmap-stage {
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr);
+    gap: 24px;
+    align-items: start;
+  }
+  .roadmap-stage:not(:last-child)::after {
+    left: 21px;
+    right: auto;
+    top: 44px;
+    bottom: -22px;
+    border-top: 0;
+    border-left: 1px dashed #a7b3a1;
+  }
+  .roadmap-stage.roadmap-available::after {
+    border-top: 0 !important;
+    border-left: 2px solid #598268;
+  }
+  .roadmap-node {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .roadmap-card {
+    padding-top: 22px;
+  }
+  .roadmap-experimental .roadmap-card {
+    padding-top: 20px;
+  }
+  .roadmap-card h3 {
+    margin-top: 16px;
+  }
+}
+@media (max-width: 540px) {
+  .roadmap-section {
+    padding-block: 48px 60px;
+  }
+  .roadmap-stage {
+    grid-template-columns: 36px minmax(0, 1fr);
+    gap: 16px;
+  }
+  .roadmap-node {
+    width: 36px;
+    height: 36px;
+  }
+  .roadmap-node svg {
+    width: 20px;
+    height: 20px;
+  }
+  .roadmap-stage:not(:last-child)::after {
+    left: 17px;
+    top: 36px;
+  }
+  .roadmap-card {
+    padding-inline: 17px;
+  }
+  .roadmap-card h3 {
+    font-size: 23px;
+  }
+  .roadmap-overview p {
+    font-size: 14px;
+  }
+  .roadmap-caption {
+    margin-left: 52px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .roadmap-plus {
+    transition: none;
+  }
+}

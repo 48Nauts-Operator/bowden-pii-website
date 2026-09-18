@@ -79,3 +79,7 @@ Bowden-PII palette and shared typography.
 Fictional email addresses in HTML examples use Cloudflare's `email_off` comments
 so the CDN does not rewrite copyable code or no-JavaScript examples. See
 [Cloudflare's documentation](https://developers.cloudflare.com/waf/tools/scrape-shield/email-address-obfuscation/).
+
+The navigation uses the GitHub mark from
+[Primer Octicons](https://github.com/primer/octicons/blob/main/icons/mark-github-16.svg).
+Logo links retain localized accessible names and keyboard focus styles.
