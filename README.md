@@ -1,6 +1,6 @@
 # Bowden-PII website
 
-The bilingual public website for Bowden-PII, prepared for **bowden-pii.com**.
+The bilingual public website for Bowden-PII, live at **https://bowden-pii.com**.
 English lives at `/`, German at `/de/`.
 
 Static HTML, CSS and JavaScript. No package installation or build step is needed.
@@ -16,13 +16,14 @@ Open http://127.0.0.1:4188/ or http://127.0.0.1:4188/de/.
 ## Publish
 
 The workflow in `.github/workflows/pages.yml` publishes `website/` to GitHub Pages
-on every push to `main`. Enable **GitHub Actions** in the repository's
-**Settings → Pages → Build and deployment** before running the workflow.
+on every push to `main`. GitHub Pages is enabled with **GitHub Actions** as
+the publishing source.
 
 The source repository is hosted on Forgejo (`origin`). The publishing repository
 is [48Nauts-Operator/bowden-pii-website](https://github.com/48Nauts-Operator/bowden-pii-website)
 (`github`). Both contain the same `main` branch. Forgejo does not run the GitHub
-Pages workflow. GitHub Pages enablement and custom-domain setup are still pending.
+Pages workflow. The custom domain is `bowden-pii.com`, serving English at `/`
+and German at `/de/` over HTTPS.
 
 After committing changes to `main`, publish them to both repositories:
 
@@ -40,10 +41,9 @@ In a fresh Forgejo clone, configure the GitHub remote once:
 git remote add github git@github.com:48Nauts-Operator/bowden-pii-website.git
 ```
 
-After registering the domain, set **Settings → Pages → Custom domain** to
-`bowden-pii.com`, then configure DNS and enable HTTPS after certificate issuance.
-The `CNAME` file documents the chosen domain; GitHub Actions deployments require
-the domain to be configured in the repository settings.
+The `CNAME` file documents the chosen domain. GitHub Actions deployments also
+require the custom domain in the repository's **Settings → Pages**. Keep this
+setting, DNS, and the canonical URLs in sync if the domain changes.
 
 Follow [GitHub's custom-domain instructions](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site)
 and [Pages workflow documentation](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
