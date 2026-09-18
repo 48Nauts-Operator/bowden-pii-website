@@ -128,7 +128,7 @@
         </p>
         <pre><code>from bowden_pii import redact
 
-result = redact("Contact mia@example.ch", policy="strict")
+result = redact("Contact <!--email_off-->mia@example.ch<!--/email_off-->", policy="strict")
 print(result.redacted)
 # Contact [EMAIL_1]</code></pre>
         <p>

@@ -154,7 +154,7 @@ pip install -e .</code></pre>
             <pre><code>from bowden_pii import redact
 
 result = redact(
-    "Contact mia@example.ch",
+    "Contact <!--email_off-->mia@example.ch<!--/email_off-->",
     policy="strict",
 )
 
@@ -167,7 +167,7 @@ local_map = result.placeholder_map
 # Audit metadata excludes the raw detected values.
 audit = result.audit</code></pre>
             <p>Or use the CLI:</p>
-            <pre><code>bowden-pii --policy strict "Contact mia@example.ch"</code></pre>
+            <pre><code>bowden-pii --policy strict "Contact <!--email_off-->mia@example.ch<!--/email_off-->"</code></pre>
             <p>
               Typed placeholders are consistent within one redaction result.
               Applications are responsible for managing maps across documents,

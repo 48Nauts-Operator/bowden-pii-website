@@ -159,7 +159,7 @@ pip install -e .</code></pre>
             <pre><code>from bowden_pii import redact
 
 result = redact(
-    &quot;Kontakt: mia@example.ch&quot;,
+    &quot;Kontakt: <!--email_off-->mia@example.ch<!--/email_off-->&quot;,
     policy=&quot;strict&quot;,
 )
 
@@ -172,7 +172,7 @@ local_map = result.placeholder_map
 # Audit-Metadaten enthalten keine erkannten Originalwerte.
 audit = result.audit</code></pre>
             <p>Oder nutzen Sie die Kommandozeile:</p>
-            <pre><code>bowden-pii --policy strict &quot;Kontakt: mia@example.ch&quot;</code></pre>
+            <pre><code>bowden-pii --policy strict &quot;Kontakt: <!--email_off-->mia@example.ch<!--/email_off-->&quot;</code></pre>
             <p>
               Typisierte Platzhalter bleiben innerhalb eines
               Maskierungsergebnisses konsistent. Anwendungen verwalten die

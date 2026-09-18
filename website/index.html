@@ -190,7 +190,7 @@
             </button>
           </div>
           <div class="motion-fallback">
-            <span>mia@example.ch</span><span>→ bowden / pii →</span
+            <span><!--email_off-->mia@example.ch<!--/email_off--></span><span>→ bowden / pii →</span
             ><span>[EMAIL_1]</span>
           </div>
         </div>
@@ -323,10 +323,10 @@
                 ><span>01 / INPUT</span>
               </div>
               <pre id="original-text">
-Please update the account contact to mia@example.ch.
+Please update the account contact to <!--email_off-->mia@example.ch<!--/email_off-->.
 AHV: 756.9217.0769.85
 IBAN: CH93 0076 2011 6238 5295 7
-Send confirmation to mia@example.ch.</pre
+Send confirmation to <!--email_off-->mia@example.ch<!--/email_off-->.</pre
               >
               <div class="panel-footnote">
                 Sensitive values are highlighted.
@@ -591,7 +591,7 @@ Send confirmation to [EMAIL_1].</pre
           <pre><code><span class="code-muted">from</span> bowden_pii <span class="code-muted">import</span> redact
 
 result = redact(
-    <span class="code-string">"Contact mia@example.ch"</span>,
+    <span class="code-string">"Contact <!--email_off-->mia@example.ch<!--/email_off-->"</span>,
     policy=<span class="code-string">"strict"</span>,
 )
 

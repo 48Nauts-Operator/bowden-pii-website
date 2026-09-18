@@ -75,3 +75,7 @@ or build dependencies.
 When publishing a post or release, update both languages and `website/sitemap.xml`.
 The editorial layout follows the structure of https://xnaut.dev/blog/ using the
 Bowden-PII palette and shared typography.
+
+Fictional email addresses in HTML examples use Cloudflare's `email_off` comments
+so the CDN does not rewrite copyable code or no-JavaScript examples. See
+[Cloudflare's documentation](https://developers.cloudflare.com/waf/tools/scrape-shield/email-address-obfuscation/).
