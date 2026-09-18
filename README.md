@@ -19,7 +19,9 @@ The workflow in `.github/workflows/pages.yml` publishes `website/` to GitHub Pag
 on changes pushed to `main`. Enable **GitHub Actions** in the repository's
 **Settings → Pages → Build and deployment** before running the workflow.
 
-The repository and domain have not yet been published or configured remotely.
+The source repository is hosted on Forgejo. To use GitHub Pages, mirror this
+repository to GitHub and enable Pages there. Forgejo does not run the GitHub
+Pages workflow. GitHub hosting and the custom domain are not yet configured.
 
 After registering the domain, set **Settings → Pages → Custom domain** to
 `bowden-pii.com`, then configure DNS and enable HTTPS after certificate issuance.
